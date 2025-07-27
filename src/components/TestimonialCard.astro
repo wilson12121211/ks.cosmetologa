@@ -1,0 +1,16 @@
+---
+/**
+ * Simple testimonial card
+ */
+interface Props {
+  name: string;
+  text: string;
+  photo: string;
+}
+const { name, text, photo } = Astro.props as Props;
+---
+<div class="bg-white rounded-xl shadow p-6 text-center" data-aos="fade-up">
+  <img src={photo} alt={name} class="w-20 h-20 object-cover rounded-full mx-auto mb-4" loading="lazy" />
+  <p class="italic text-gray-600 mb-3">"{text}"</p>
+  <h4 class="font-medium text-pink-700">{name}</h4>
+</div>

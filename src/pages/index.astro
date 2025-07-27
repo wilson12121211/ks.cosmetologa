@@ -1,59 +1,164 @@
 ---
-layout: "../layouts/BaseLayout.astro"
-title: "Inicio"
+import Layout from '../layouts/BaseLayout.astro';
+import { Image } from '@astrojs/image/components';
+import Hero from '../components/Hero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import TreatmentCard from '../components/TreatmentCard.astro';
+
+export const layout = "../layouts/BaseLayout.astro";
+export const title = "Inicio";
 ---
 
-<!-- Hero -->
-<section class="bg-pink-100 text-center py-20 px-6">
-  <h1 class="text-4xl md:text-5xl font-bold text-pink-900 mb-4">Bienvenida a KS Cosmetóloga</h1>
-  <p class="text-lg md:text-xl text-pink-800 mb-6">Tu piel merece lo mejor. Tratamientos faciales personalizados en Santo Domingo Oeste.</p>
-  <a href="/reserva" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition">
-    Reserva tu cita
-  </a>
-</section>
+<Layout>
+  <main>
+    <!-- Hero -->
+    <Hero title="Bienvenida a KS Cosmetóloga" subtitle="¡Tu piel merece lo mejor! Tratamientos faciales y corporales personalizados en Santo Domingo Oeste." ctaText="Reserva tu cita" ctaHref="/reserva" bgImage={import.meta.env.BASE_URL + 'hero_spa.jpg'} />
 
-<!-- Tratamientos -->
-<section class="bg-white py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold text-gray-800 mb-8">Tratamientos Destacados</h2>
-  <ul class="grid gap-4 md:grid-cols-2 max-w-2xl mx-auto text-pink-900">
-    <li class="bg-pink-50 p-4 rounded-lg shadow-sm">💧 Limpieza Facial Profunda</li>
-    <li class="bg-pink-50 p-4 rounded-lg shadow-sm">🌡️ Radiofrecuencia</li>
-    <li class="bg-pink-50 p-4 rounded-lg shadow-sm">🔆 Celuma</li>
-    <li class="bg-pink-50 p-4 rounded-lg shadow-sm">🍋 Peeling Químico</li>
+    
+
+    <!-- Servicios Destacados -->
+    <section class="bg-white py-16 px-6 text-center animate-slideUp">
+      <SectionTitle title="Tratamientos Destacados" />
+      <div class="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+        <TreatmentCard icon="💧" title="Limpieza Facial Profunda" description="Elimina impurezas, puntos negros y revitaliza tu piel." />
+        <TreatmentCard icon="🔊" title="Radiofrecuencia" description="Reafirma y rejuvenece sin cirugía." />
+        <TreatmentCard icon="✨" title="Peeling Químico" description="Renueva la piel para un tono uniforme y luminoso." />
+      </div>
+      <a href="/tratamientos" class="mt-10 inline-block text-pink-600 underline hover:text-pink-800 font-medium" data-aos="fade-up" data-aos-delay="300">
+        Ver todos los tratamientos
+      </a>
+    </section>
+
+    <!-- Resultados Reales -->
+    <section class="bg-pink-50 py-20 px-6 animate-slideUp" id="resultados">
+      <h2 class="text-3xl font-semibold text-gray-800 text-center mb-10">Resultados Reales</h2>
+
+      <!-- Galería 3×2 -->
+      <div class="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+        <!-- Replace the URLs with your optimized WebP images -->
+        {Array.from({ length: 6 }).map((_, i) => (
+          <a href={`https://picsum.photos/seed/ks${i}/1200/800.webp`} data-lightbox="galeria" class="block overflow-hidden rounded-xl shadow-md group">
+            <img src={`https://picsum.photos/seed/ks${i}/600/400.webp`} alt={`Resultado ${i + 1}`} loading="lazy" class="w-full h-60 object-cover object-center transition-transform duration-300 group-hover:scale-105" />
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="bg-white py-20 px-6" x-data="{current:0, testimonios:[
+      {nombre:'Ana P.', texto:'Mi piel luce increíble desde la primera sesión!', foto:'https://randomuser.me/api/portraits/women/65.jpg'},
+      {nombre:'Laura M.', texto:'Excelente trato y resultados visibles.', foto:'https://randomuser.me/api/portraits/women/43.jpg'},
+      {nombre:'Carla R.', texto:'¡La mejor experiencia de cuidado facial!', foto:'https://randomuser.me/api/portraits/women/22.jpg'},
+    ]}">
+      <h2 class="text-3xl font-semibold text-gray-800 text-center mb-10">Testimonios</h2>
+
+      <div class="relative max-w-xl mx-auto">
+        <!-- Slides -->
+        <template x-for="(t, idx) in testimonios" :key="idx">
+          <div x-show="current===idx" x-transition class="text-center p-8 rounded-xl bg-pink-50 shadow-md">
+            <img :src="t.foto" :alt="t.nombre" class="w-20 h-20 object-cover object-center rounded-full mx-auto mb-4" />
+            <p class="text-gray-700 italic mb-4" x-text="t.texto"></p>
+            <h3 class="font-heading text-pink-700" x-text="t.nombre"></h3>
+          </div>
+        </template>
+
+        <!-- Controles -->
+        <button @click="current = (current - 1 + testimonios.length) % testimonios.length" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-pink-100">
+          &#10094;
+        </button>
+        <button @click="current = (current + 1) % testimonios.length" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-pink-100">
+          &#10095;
+        </button>
+      </div>
+
+      <script>
+        document.addEventListener('alpine:init', () => {
+          Alpine.effect(() => {
+            const comp = Alpine.$data(document.querySelector('[x-data]'));
+            if(!comp) return;
+            clearInterval(comp._timer);
+            comp._timer = setInterval(() => {
+              comp.current = (comp.current + 1) % comp.testimonios.length;
+            }, 5000);
+          });
+        });
+      </script>
+    </section>
+
+    <!-- CTA Reserva -->
+    <section class="bg-gradient-to-r from-pink-500 to-pink-600 py-16 px-6 text-center text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">¡Luce tu mejor versión hoy!</h2>
+      <p class="mb-6 text-lg">Agenda tu cita de evaluación gratuita y descubre el tratamiento ideal para ti.</p>
+      <a href="/reserva" class="bg-white text-pink-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-100 transition-transform transform hover:scale-105">
+        Agenda tu cita
+      </a>
+    </section>
+
+    <!-- Blog -->
+    <section class="bg-white py-16 px-6 text-center animate-slideUp">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-4">Consejos para tu piel</h2>
+      <p class="text-gray-700 mb-6">Lee nuestros artículos para aprender más sobre el cuidado facial.</p>
+      <a href="/blog" class="text-pink-600 underline hover:text-pink-800 font-medium">
+        Ir al blog
+      </a>
+    </section>
+
+	<!-- Sobre mí -->
+
+    <section id="sobre-mi" class="bg-white py-16 px-6 md:px-12">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Imagen -->
+
+        <div class="max-w-xs mx-auto">
+  <img
+    src="https://i.ibb.co/RpYXk8Gt/Imagen-de-Whats-App-2025-07-17-a-las-00-59-40-95ff6e97.jpg"
+    alt="KS Cosmetóloga"
+    class="rounded-xl shadow-md w-full h-auto object-cover"
+    loading="lazy"
+  />
+</div>
+
+        <!-- Texto -->
+
+       <div class="bg-white max-w-md mx-auto rounded-xl shadow-md p-6 overflow-y-auto max-h-96">
+  <h2 class="text-2xl md:text-3xl font-bold text-pink-600 mb-4">🌸 Sobre mí</h2>
+  <p class="text-gray-700 text-base md:text-lg mb-3">
+    ¡Hola! Mi nombre es <strong>Karla Salas</strong>, cosmetóloga profesional y fundadora de <strong>KS Cosmetóloga</strong>. Me apasiona el cuidado de la piel y he dedicado mi carrera a ayudar a otras personas a verse y sentirse mejor.
+  </p>
+  <p class="text-gray-700 text-base md:text-lg mb-3">
+    🎓  <strong>UNPHU</strong>, donde adquirí conocimientos avanzados en estética facial, limpieza profunda y tratamientos rejuvenecedores.
+  </p>
+  <p class="text-gray-700 text-base md:text-lg mb-3">
+    Con años de experiencia, ofrezco atención personalizada con resultados reales desde la primera sesión.
+  </p>
+  <ul class="list-disc list-inside text-gray-700 text-base md:text-lg mb-4">
+    <li>Trato cálido y profesional</li>
+    <li>Resultados visibles</li>
+    <li>Pasión por tu bienestar</li>
   </ul>
-  <a href="/tratamientos" class="mt-8 inline-block text-pink-600 underline hover:text-pink-800 font-medium">
-    Ver todos los tratamientos
-  </a>
-</section>
+</div>
 
-<!-- Resultados -->
-<section class="bg-pink-50 py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold text-gray-800 mb-4">Resultados Reales</h2>
-  <p class="text-gray-700 mb-6">Antes y después de clientas satisfechas.</p>
-  <a href="/resultados" class="text-pink-600 underline hover:text-pink-800 font-medium">
-    Ver resultados
-  </a>
-</section>
+          <blockquote class="border-l-4 border-pink-400 pl-4 italic text-gray-600 mt-4">
+            "Sentirte bien empieza por verte bien. Estoy aquí para ayudarte a brillar con tu propia luz."
+          </blockquote>
+        </div>
+      </div>
+    </section>
 
-<!-- Blog -->
-<section class="bg-white py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold text-gray-800 mb-4">Consejos para tu piel</h2>
-  <p class="text-gray-700 mb-6">Lee nuestros artículos para aprender más sobre el cuidado facial.</p>
-  <a href="/blog" class="text-pink-600 underline hover:text-pink-800 font-medium">
-    Ir al blog
-  </a>
-</section>
+    <!-- Contacto WhatsApp -->
+    <section class="bg-pink-100 py-16 px-6 text-center">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-4">¿Tienes dudas?</h2>
+      <p class="text-gray-700 mb-6">Escríbenos por WhatsApp y agenda tu evaluación.</p>
+      <a
+        href="https://wa.me/18099582261"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition"
+      >
+        Hablar por WhatsApp
+      </a>
+    </section>
+  </main>
+</Layout>
 
-<!-- Contacto WhatsApp -->
-<section class="bg-pink-100 py-16 px-6 text-center">
-  <h2 class="text-3xl font-semibold text-gray-800 mb-4">¿Tienes dudas?</h2>
-  <p class="text-gray-700 mb-6">Escríbenos por WhatsApp y agenda tu evaluación.</p>
-  <a
-    href="https://wa.me/18291234567"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition"
-  >
-    Hablar por WhatsApp
-  </a>
-</section>
