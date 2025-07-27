@@ -1,9 +1,13 @@
 ighthouse tweaks (preload fuentes locales, minify OG image).
 
 ---
-layout: "../layouts/BaseLayout.astro"
-title: "Tratamientos"
-description: "Conoce todos los tratamientos disponibles en KS Cosmetóloga."
+import Hero from '../components/Hero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import TreatmentCard from '../components/TreatmentCard.astro';
+
+layout = "../layouts/BaseLayout.astro";
+title = "Tratamientos";
+description = "Conoce todos los tratamientos disponibles en KS Cosmetóloga.";
 ---
 
 <section class="bg-gradient-to-b from-pink-100 to-white py-20 px-6 animate-fadeIn">
@@ -23,43 +27,22 @@ description: "Conoce todos los tratamientos disponibles en KS Cosmetóloga."
 
   <!-- Tratamientos Faciales -->
   <div class="max-w-5xl mx-auto mb-16">
-    <h2 class="text-3xl font-bold text-pink-700 mb-6 text-center">Tratamientos Faciales</h2>
+    <SectionTitle title="Tratamientos Faciales" />
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">🧼 Limpieza Profunda</h3>
-        <p class="text-gray-600">Ideal para eliminar impurezas, puntos negros y revitalizar tu piel.</p>
-      </div>
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">💡 Celuma LED</h3>
-        <p class="text-gray-600">Fototerapia con luz LED que estimula el colágeno y mejora la textura.</p>
-      </div>
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">✨ Peeling Químico</h3>
-        <p class="text-gray-600">Renovación celular con ácidos controlados para una piel más uniforme.</p>
-      </div>
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">🔊 Radiofrecuencia</h3>
-        <p class="text-gray-600">Tensa y rejuvenece la piel mediante calor interno sin cirugía.</p>
-      </div>
+      <TreatmentCard icon="🧼" title="Limpieza Profunda" description="Ideal para eliminar impurezas, puntos negros y revitalizar tu piel." />
+      <TreatmentCard icon="💡" title="Celuma LED" description="Fototerapia con luz LED que estimula el colágeno y mejora la textura." />
+      <TreatmentCard icon="✨" title="Peeling Químico" description="Renovación celular con ácidos controlados para una piel más uniforme." />
+      <TreatmentCard icon="🔊" title="Radiofrecuencia" description="Tensa y rejuvenece la piel mediante calor interno sin cirugía." />
     </div>
   </div>
 
   <!-- Tratamientos Corporales -->
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold text-pink-700 mb-6 text-center">Tratamientos Corporales</h2>
+    <SectionTitle title="Tratamientos Corporales" />
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">🧴 Limpieza de Espalda</h3>
-        <p class="text-gray-600">Especial para pieles con acné o foliculitis. Limpieza profunda y control.</p>
-      </div>
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02] transition">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">🛁 Exfoliación + Hidratación</h3>
-        <p class="text-gray-600">Remueve células muertas y deja la piel suave, brillante y saludable.</p>
-      </div>
-      <div class="bg-white border border-pink-100 p-6 rounded-2xl shadow hover:shadow-md transition md:col-span-2">
-        <h3 class="text-xl font-semibold text-pink-700 mb-2">🌿 Masaje de Relajación Femenino</h3>
-        <p class="text-gray-600">Relajá cuerpo y mente con un masaje exclusivo para tu bienestar integral.</p>
-      </div>
+      <TreatmentCard icon="🧴" title="Limpieza de Espalda" description="Especial para pieles con acné o foliculitis. Limpieza profunda y control." />
+      <TreatmentCard icon="🛁" title="Exfoliación + Hidratación" description="Remueve células muertas y deja la piel suave, brillante y saludable." />
+      <TreatmentCard icon="🌿" title="Masaje de Relajación Femenino" description="Relajá cuerpo y mente con un masaje exclusivo para tu bienestar integral." />
     </div>
   </div>
 </section>
