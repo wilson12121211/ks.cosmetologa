@@ -1,0 +1,23 @@
+{
+  "title": "Limpieza Facial Profunda",
+  "description": "Elimina impurezas, puntos negros y células muertas para revelar una piel radiante y saludable",
+  "category": "Facial",
+  "price": 2500,
+  "duration": "60 minutos",
+  "benefits": [
+    "Eliminación profunda de impurezas",
+    "Reducción de puntos negros",
+    "Piel más luminosa y suave",
+    "Poros visiblemente reducidos",
+    "Hidratación profunda",
+    "Estimulación de la renovación celular"
+  ],
+  "icon": "✨",
+  "image": "/treatments/limpieza-profunda.jpg",
+  "featured": true,
+  "seo": {
+    "title": "Limpieza Facial Profunda - KS Cosmetóloga",
+    "description": "Tratamiento de limpieza facial profunda profesional. Elimina impurezas y puntos negros para una piel radiante. Reserva tu cita en Santo Domingo.",
+    "keywords": ["limpieza facial", "tratamiento facial", "puntos negros", "piel radiante", "cosmetología"]
+  }
+}

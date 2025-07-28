@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "title": "KS Cosmetóloga",
+    "subtitle": "Realza tu belleza natural con tratamientos profesionales de última generación",
+    "ctaText": "Reservar Cita",
+    "ctaLink": "https://app-para-citas-13ded.web.app/",
+    "backgroundImage": "/hero-main.jpg",
+    "overlayOpacity": 0.4
+  },
+  "contact": {
+    "phone": "+1 809 958 2261",
+    "whatsapp": "18099582261",
+    "email": "info@kscosmetologa.com",
+    "address": "Santo Domingo, República Dominicana",
+    "hours": [
+      { "day": "Lunes - Viernes", "hours": "9:00 AM - 6:00 PM" },
+      { "day": "Sábados", "hours": "9:00 AM - 4:00 PM" },
+      { "day": "Domingos", "hours": "Cerrado" }
+    ]
+  },
+  "social": {
+    "instagram": "https://instagram.com/kscosmetologa",
+    "facebook": "https://facebook.com/kscosmetologa",
+    "tiktok": "https://tiktok.com/@kscosmetologa"
+  },
+  "seo": {
+    "siteName": "KS Cosmetóloga",
+    "defaultTitle": "KS Cosmetóloga - Tratamientos Faciales y Corporales Profesionales",
+    "defaultDescription": "Centro especializado en tratamientos cosmetológicos avanzados. Limpieza facial, radiofrecuencia, peeling químico y más. Resultados garantizados en Santo Domingo.",
+    "defaultImage": "/og-image.jpg",
+    "twitterHandle": "@kscosmetologa"
+  }
+}

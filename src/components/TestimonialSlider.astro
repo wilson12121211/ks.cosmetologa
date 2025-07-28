@@ -1,0 +1,26 @@
+---
+/**
+ * Simple slider with Alpine.js
+ */
+interface Testimonial { name: string; text: string; photo: string; }
+interface Props { testimonials: Testimonial[] }
+const { testimonials } = Astro.props as Props;
+---
+<div x-data="{i:0, total: {testimonials.length}}" class="relative" data-aos="fade-up">
+  <!-- Slides -->
+  <template x-for="(t,index) in {JSON.stringify(testimonials)}" :key="index">
+    <div x-show="i===index" class="text-center px-6">
+      <img :src="t.photo" :alt="t.name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" loading="lazy">
+      <p class="italic text-gray-600 max-w-2xl mx-auto mb-3" x-text="'\"'+t.text+'\"'"></p>
+      <h4 class="font-semibold text-pink-700" x-text="t.name"></h4>
+    </div>
+  </template>
+
+  <!-- Controls -->
+  <button @click="i = (i-1+total)%total" class="absolute left-0 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow hover:bg-pink-50">
+    ◀
+  </button>
+  <button @click="i = (i+1)%total" class="absolute right-0 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow hover:bg-pink-50">
+    ▶
+  </button>
+</div>

@@ -1,0 +1,23 @@
+{
+  "title": "Celuma LED Terapia",
+  "description": "Fototerapia con luz LED que estimula la producción de colágeno y mejora la textura de la piel",
+  "category": "Facial",
+  "price": 3000,
+  "duration": "45 minutos",
+  "benefits": [
+    "Estimulación natural del colágeno",
+    "Reducción de líneas finas",
+    "Mejora la textura de la piel",
+    "Acelera la cicatrización",
+    "Reduce la inflamación",
+    "Tratamiento no invasivo"
+  ],
+  "icon": "💡",
+  "image": "/treatments/celuma-led.jpg",
+  "featured": true,
+  "seo": {
+    "title": "Celuma LED Terapia - Fototerapia Facial Avanzada",
+    "description": "Tratamiento de fototerapia LED para estimular colágeno y mejorar la piel. Tecnología Celuma profesional en Santo Domingo.",
+    "keywords": ["celuma led", "fototerapia", "colágeno", "anti-aging", "luz led facial"]
+  }
+}

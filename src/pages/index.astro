@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-import { Image } from '@astrojs/image/components';
 import Hero from '../components/Hero.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
@@ -17,147 +16,625 @@ export const title = "Inicio";
     
 
     <!-- Servicios Destacados -->
-    <section class="bg-white py-16 px-6 text-center animate-slideUp">
-      <SectionTitle title="Tratamientos Destacados" />
-      <div class="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
-        <TreatmentCard icon="💧" title="Limpieza Facial Profunda" description="Elimina impurezas, puntos negros y revitaliza tu piel." />
-        <TreatmentCard icon="🔊" title="Radiofrecuencia" description="Reafirma y rejuvenece sin cirugía." />
-        <TreatmentCard icon="✨" title="Peeling Químico" description="Renueva la piel para un tono uniforme y luminoso." />
+    <section class="relative bg-gradient-to-br from-gray-50 via-white to-pink-50 py-24 px-6 overflow-hidden">
+      <!-- Decorative Background -->
+      <div class="absolute top-0 left-0 w-72 h-72 bg-pink-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-rose-200/15 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-pink-100 rounded-full mb-4">
+            <span class="text-pink-700 font-medium text-sm">✨ Nuestros Servicios</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Tratamientos <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Destacados</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Descubre nuestros tratamientos más populares, diseñados para realzar tu belleza natural y cuidar tu piel con la más alta calidad.
+          </p>
+        </div>
+        
+        <!-- Treatment Cards -->
+        <div class="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto mb-16">
+          <TreatmentCard icon="💧" title="Limpieza Facial Profunda" description="Elimina impurezas, puntos negros y revitaliza tu piel con técnicas avanzadas y productos de alta calidad." price="RD$2,500" />
+          <TreatmentCard icon="🔊" title="Radiofrecuencia" description="Reafirma y rejuvenece sin cirugía. Estimula la producción de colágeno para una piel más firme y joven." price="RD$3,500" />
+          <TreatmentCard icon="✨" title="Peeling Químico" description="Renueva la piel para un tono uniforme y luminoso. Elimina manchas y mejora la textura de tu rostro." price="RD$3,000" />
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+          <a href="/tratamientos" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-full shadow-xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105">
+            <span>Ver todos los tratamientos</span>
+            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
       </div>
-      <a href="/tratamientos" class="mt-10 inline-block text-pink-600 underline hover:text-pink-800 font-medium" data-aos="fade-up" data-aos-delay="300">
-        Ver todos los tratamientos
-      </a>
     </section>
 
     <!-- Resultados Reales -->
-    <section class="bg-pink-50 py-20 px-6 animate-slideUp" id="resultados">
-      <h2 class="text-3xl font-semibold text-gray-800 text-center mb-10">Resultados Reales</h2>
-
-      <!-- Galería 3×2 -->
-      <div class="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-        <!-- Replace the URLs with your optimized WebP images -->
-        {Array.from({ length: 6 }).map((_, i) => (
-          <a href={`https://picsum.photos/seed/ks${i}/1200/800.webp`} data-lightbox="galeria" class="block overflow-hidden rounded-xl shadow-md group">
-            <img src={`https://picsum.photos/seed/ks${i}/600/400.webp`} alt={`Resultado ${i + 1}`} loading="lazy" class="w-full h-60 object-cover object-center transition-transform duration-300 group-hover:scale-105" />
+    <section class="relative bg-white py-24 px-6 overflow-hidden" id="resultados">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 25% 25%, #ec4899 2px, transparent 2px), radial-gradient(circle at 75% 75%, #f43f5e 2px, transparent 2px); background-size: 50px 50px;"></div>
+      </div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full mb-4">
+            <span class="text-pink-700 font-medium text-sm">🎆 Transformaciones</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Resultados <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Reales</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Mira las increíbles transformaciones de nuestras clientas. Cada resultado es único y refleja nuestro compromiso con la excelencia.
+          </p>
+        </div>
+        
+        <!-- Gallery Grid -->
+        <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-3 max-w-6xl mx-auto">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500" data-aos="fade-up" data-aos-delay={i * 100}>
+              <!-- Image Container -->
+              <div class="relative aspect-[4/5] overflow-hidden">
+                <a href={`https://picsum.photos/seed/ks${i}/1200/800.webp`} data-lightbox="galeria" class="block h-full">
+                  <img 
+                    src={`https://picsum.photos/seed/ks${i}/600/750.webp`} 
+                    alt={`Resultado ${i + 1}`} 
+                    loading="lazy" 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  <!-- Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  <!-- Hover Content -->
+                  <div class="absolute bottom-4 left-4 right-4 text-white transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <h3 class="font-semibold text-lg mb-1">Transformación {i + 1}</h3>
+                    <p class="text-sm text-gray-200">Ver resultado completo</p>
+                  </div>
+                  
+                  <!-- Zoom Icon -->
+                  <div class="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <!-- Bottom CTA -->
+        <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="600">
+          <p class="text-gray-600 mb-6 text-lg">¿Lista para tu transformación?</p>
+          <a href="/reserva" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-full shadow-xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105">
+            <span>Agenda tu cita ahora</span>
+            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
           </a>
-        ))}
+        </div>
       </div>
     </section>
 
     <!-- Testimonios -->
-    <section class="bg-white py-20 px-6" x-data="{current:0, testimonios:[
-      {nombre:'Ana P.', texto:'Mi piel luce increíble desde la primera sesión!', foto:'https://randomuser.me/api/portraits/women/65.jpg'},
-      {nombre:'Laura M.', texto:'Excelente trato y resultados visibles.', foto:'https://randomuser.me/api/portraits/women/43.jpg'},
-      {nombre:'Carla R.', texto:'¡La mejor experiencia de cuidado facial!', foto:'https://randomuser.me/api/portraits/women/22.jpg'},
+    <section class="relative bg-gradient-to-br from-gray-50 via-pink-25 to-rose-50 py-24 px-6 overflow-hidden" x-data="{current:0, testimonios:[
+      {nombre:'Ana P.', texto:'Mi piel luce increíble desde la primera sesión! Karla es una profesional excepcional y los resultados hablan por sí solos.', foto:'https://randomuser.me/api/portraits/women/65.jpg', tratamiento:'Limpieza Facial', rating: 5},
+      {nombre:'Laura M.', texto:'Excelente trato y resultados visibles. El ambiente es muy relajante y profesional. Totalmente recomendado.', foto:'https://randomuser.me/api/portraits/women/43.jpg', tratamiento:'Radiofrecuencia', rating: 5},
+      {nombre:'Carla R.', texto:'¡La mejor experiencia de cuidado facial! Mi piel nunca se había visto tan radiante y saludable.', foto:'https://randomuser.me/api/portraits/women/22.jpg', tratamiento:'Peeling Químico', rating: 5},
+      {nombre:'María S.', texto:'Increíble transformación en mi piel. Karla es muy profesional y conoce perfectamente su trabajo.', foto:'https://randomuser.me/api/portraits/women/32.jpg', tratamiento:'Hidrafacial', rating: 5},
     ]}">
-      <h2 class="text-3xl font-semibold text-gray-800 text-center mb-10">Testimonios</h2>
-
-      <div class="relative max-w-xl mx-auto">
-        <!-- Slides -->
-        <template x-for="(t, idx) in testimonios" :key="idx">
-          <div x-show="current===idx" x-transition class="text-center p-8 rounded-xl bg-pink-50 shadow-md">
-            <img :src="t.foto" :alt="t.nombre" class="w-20 h-20 object-cover object-center rounded-full mx-auto mb-4" />
-            <p class="text-gray-700 italic mb-4" x-text="t.texto"></p>
-            <h3 class="font-heading text-pink-700" x-text="t.nombre"></h3>
+      <!-- Background Decorations -->
+      <div class="absolute top-0 left-0 w-96 h-96 bg-pink-200/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 bg-rose-200/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full mb-4">
+            <span class="text-pink-700 font-medium text-sm">💬 Lo que dicen nuestras clientas</span>
           </div>
-        </template>
-
-        <!-- Controles -->
-        <button @click="current = (current - 1 + testimonios.length) % testimonios.length" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-pink-100">
-          &#10094;
-        </button>
-        <button @click="current = (current + 1) % testimonios.length" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-pink-100">
-          &#10095;
-        </button>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Testimonios</span> Reales
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Descubre por qué nuestras clientas confían en nosotros para el cuidado de su piel.
+          </p>
+        </div>
+        
+        <!-- Testimonials Carousel -->
+        <div class="relative max-w-4xl mx-auto">
+          <!-- Main Testimonial -->
+          <div class="relative min-h-[400px]">
+            <template x-for="(t, idx) in testimonios" :key="idx">
+              <div x-show="current===idx" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform translate-x-8" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform -translate-x-8" class="absolute inset-0">
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-pink-100">
+                  <!-- Stars -->
+                  <div class="flex justify-center mb-6">
+                    <template x-for="star in 5">
+                      <svg class="w-6 h-6 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    </template>
+                  </div>
+                  
+                  <!-- Quote -->
+                  <div class="text-center mb-8">
+                    <div class="text-6xl text-pink-200 mb-4">"</div>
+                    <p class="text-xl md:text-2xl text-gray-700 leading-relaxed italic font-medium" x-text="t.texto"></p>
+                  </div>
+                  
+                  <!-- Client Info -->
+                  <div class="flex items-center justify-center space-x-6">
+                    <div class="relative">
+                      <div class="absolute -inset-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full blur opacity-20"></div>
+                      <img :src="t.foto" :alt="t.nombre" class="relative w-16 h-16 object-cover rounded-full border-4 border-white shadow-lg" />
+                    </div>
+                    <div class="text-center">
+                      <h3 class="font-bold text-xl text-gray-800" x-text="t.nombre"></h3>
+                      <p class="text-pink-600 font-medium" x-text="t.tratamiento"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <button @click="current = (current - 1 + testimonios.length) % testimonios.length" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-pink-100 flex items-center justify-center hover:bg-pink-50 transition-all duration-300 group">
+            <svg class="w-6 h-6 text-gray-600 group-hover:text-pink-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button @click="current = (current + 1) % testimonios.length" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-pink-100 flex items-center justify-center hover:bg-pink-50 transition-all duration-300 group">
+            <svg class="w-6 h-6 text-gray-600 group-hover:text-pink-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          
+          <!-- Dots Indicator -->
+          <div class="flex justify-center mt-8 space-x-2">
+            <template x-for="(t, idx) in testimonios" :key="idx">
+              <button @click="current = idx" class="w-3 h-3 rounded-full transition-all duration-300" :class="current === idx ? 'bg-pink-500 scale-125' : 'bg-pink-200 hover:bg-pink-300'"></button>
+            </template>
+          </div>
+        </div>
+        
+        <!-- Bottom Stats -->
+        <div class="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-pink-600 mb-2">98%</div>
+            <div class="text-gray-600 text-sm">Satisfacción</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-pink-600 mb-2">4.9</div>
+            <div class="text-gray-600 text-sm">Calificación</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-pink-600 mb-2">85%</div>
+            <div class="text-gray-600 text-sm">Regresan</div>
+          </div>
+        </div>
       </div>
 
       <script>
         document.addEventListener('alpine:init', () => {
           Alpine.effect(() => {
-            const comp = Alpine.$data(document.querySelector('[x-data]'));
+            const comp = Alpine.$data(document.querySelector('[x-data*="testimonios"]'));
             if(!comp) return;
             clearInterval(comp._timer);
             comp._timer = setInterval(() => {
               comp.current = (comp.current + 1) % comp.testimonios.length;
-            }, 5000);
+            }, 6000);
           });
         });
       </script>
     </section>
 
     <!-- CTA Reserva -->
-    <section class="bg-gradient-to-r from-pink-500 to-pink-600 py-16 px-6 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">¡Luce tu mejor versión hoy!</h2>
-      <p class="mb-6 text-lg">Agenda tu cita de evaluación gratuita y descubre el tratamiento ideal para ti.</p>
-      <a href="/reserva" class="bg-white text-pink-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-100 transition-transform transform hover:scale-105">
-        Agenda tu cita
-      </a>
+    <section class="relative bg-gradient-to-br from-pink-600 via-rose-600 to-pink-700 py-24 px-6 text-center text-white overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 20% 80%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 2px, transparent 2px), radial-gradient(circle at 40% 40%, white 1px, transparent 1px); background-size: 60px 60px, 80px 80px, 40px 40px;"></div>
+      </div>
+      
+      <!-- Floating Elements -->
+      <div class="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+      <div class="absolute bottom-16 right-16 w-32 h-32 bg-white/5 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-16 h-16 bg-white/15 rounded-full blur-lg animate-pulse" style="animation-delay: 1s;"></div>
+      
+      <div class="relative z-10 max-w-5xl mx-auto">
+        <!-- Badge -->
+        <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-8" data-aos="fade-down">
+          <span class="text-white/90 font-medium text-sm">🎆 Oferta Especial</span>
+        </div>
+        
+        <!-- Main Heading -->
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" data-aos="fade-up" data-aos-delay="200">
+          <span class="block">¡Luce tu mejor</span>
+          <span class="block text-pink-200">versión hoy!</span>
+        </h2>
+        
+        <!-- Subtitle -->
+        <p class="text-xl md:text-2xl mb-8 text-pink-100 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+          Agenda tu <strong class="text-white">evaluación gratuita</strong> y descubre el tratamiento ideal para ti. Tu piel merece lo mejor.
+        </p>
+        
+        <!-- Benefits List -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="600">
+          <div class="flex items-center justify-center space-x-3">
+            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="text-pink-100">Evaluación Gratuita</span>
+          </div>
+          <div class="flex items-center justify-center space-x-3">
+            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="text-pink-100">Resultados Inmediatos</span>
+          </div>
+          <div class="flex items-center justify-center space-x-3">
+            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="text-pink-100">Garantía de Calidad</span>
+          </div>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="800">
+          <a href="/reserva" class="group relative inline-flex items-center px-10 py-5 bg-white text-pink-600 font-bold text-lg rounded-full shadow-2xl hover:shadow-white/25 transition-all duration-300 transform hover:scale-105">
+            <span class="relative z-10">Agenda tu cita</span>
+            <svg class="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <div class="absolute inset-0 bg-pink-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </a>
+          
+          <a href="https://wa.me/18099582261" target="_blank" class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full shadow-xl transition-all duration-300 transform hover:scale-105">
+            <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+        
+        <!-- Urgency Text -->
+        <p class="mt-8 text-pink-200 text-sm" data-aos="fade-up" data-aos-delay="1000">
+          🔥 Cupos limitados - Solo las primeras 10 clientas del mes reciben descuento especial
+        </p>
+      </div>
     </section>
 
     <!-- Blog -->
-    <section class="bg-white py-16 px-6 text-center animate-slideUp">
-      <h2 class="text-3xl font-semibold text-gray-800 mb-4">Consejos para tu piel</h2>
-      <p class="text-gray-700 mb-6">Lee nuestros artículos para aprender más sobre el cuidado facial.</p>
-      <a href="/blog" class="text-pink-600 underline hover:text-pink-800 font-medium">
-        Ir al blog
-      </a>
+    <section class="relative bg-gradient-to-br from-white via-pink-25 to-gray-50 py-24 px-6 overflow-hidden">
+      <!-- Decorative Elements -->
+      <div class="absolute top-0 right-0 w-72 h-72 bg-pink-200/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-rose-200/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full mb-4">
+            <span class="text-pink-700 font-medium text-sm">📚 Aprende con nosotros</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Consejos para <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">tu piel</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Descubre los secretos del cuidado facial con nuestros artículos especializados y consejos profesionales.
+          </p>
+        </div>
+        
+        <!-- Blog Preview Cards -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <!-- Article 1 -->
+          <article class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-pink-100" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative overflow-hidden">
+              <img src="https://picsum.photos/seed/skincare1/400/250" alt="Rutina de cuidado facial" class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-pink-500 text-white text-xs font-semibold rounded-full">Cuidado Facial</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-pink-600 transition-colors">Rutina de Cuidado Facial Diaria</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">Descubre los pasos esenciales para mantener tu piel radiante y saludable todos los días.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">5 min de lectura</span>
+                <a href="/blog/rutina-facial" class="text-pink-600 hover:text-pink-700 font-medium text-sm flex items-center">
+                  Leer más
+                  <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 2 -->
+          <article class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-pink-100" data-aos="fade-up" data-aos-delay="400">
+            <div class="relative overflow-hidden">
+              <img src="https://picsum.photos/seed/skincare2/400/250" alt="Beneficios del peeling" class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-rose-500 text-white text-xs font-semibold rounded-full">Tratamientos</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-pink-600 transition-colors">Beneficios del Peeling Químico</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">Todo lo que necesitas saber sobre este tratamiento revolucionario para renovar tu piel.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">7 min de lectura</span>
+                <a href="/blog/peeling-quimico" class="text-pink-600 hover:text-pink-700 font-medium text-sm flex items-center">
+                  Leer más
+                  <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Article 3 -->
+          <article class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-pink-100" data-aos="fade-up" data-aos-delay="600">
+            <div class="relative overflow-hidden">
+              <img src="https://picsum.photos/seed/skincare3/400/250" alt="Cuidado de la piel en verano" class="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full">Consejos</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-pink-600 transition-colors">Protección Solar y Cuidados</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">Cómo proteger tu piel del sol y mantenerla hidratada durante todo el año.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">4 min de lectura</span>
+                <a href="/blog/proteccion-solar" class="text-pink-600 hover:text-pink-700 font-medium text-sm flex items-center">
+                  Leer más
+                  <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="800">
+          <a href="/blog" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-full shadow-xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105">
+            <span>Ver todos los artículos</span>
+            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </section>
 
 	<!-- Sobre mí -->
-
-    <section id="sobre-mi" class="bg-white py-16 px-6 md:px-12">
-      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-
-        <!-- Imagen -->
-
-        <div class="max-w-xs mx-auto">
-  <img
-    src="https://i.ibb.co/RpYXk8Gt/Imagen-de-Whats-App-2025-07-17-a-las-00-59-40-95ff6e97.jpg"
-    alt="KS Cosmetóloga"
-    class="rounded-xl shadow-md w-full h-auto object-cover"
-    loading="lazy"
-  />
-</div>
-
-        <!-- Texto -->
-
-       <div class="bg-white max-w-md mx-auto rounded-xl shadow-md p-6 overflow-y-auto max-h-96">
-  <h2 class="text-2xl md:text-3xl font-bold text-pink-600 mb-4">🌸 Sobre mí</h2>
-  <p class="text-gray-700 text-base md:text-lg mb-3">
-    ¡Hola! Mi nombre es <strong>Karla Salas</strong>, cosmetóloga profesional y fundadora de <strong>KS Cosmetóloga</strong>. Me apasiona el cuidado de la piel y he dedicado mi carrera a ayudar a otras personas a verse y sentirse mejor.
-  </p>
-  <p class="text-gray-700 text-base md:text-lg mb-3">
-    🎓  <strong>UNPHU</strong>, donde adquirí conocimientos avanzados en estética facial, limpieza profunda y tratamientos rejuvenecedores.
-  </p>
-  <p class="text-gray-700 text-base md:text-lg mb-3">
-    Con años de experiencia, ofrezco atención personalizada con resultados reales desde la primera sesión.
-  </p>
-  <ul class="list-disc list-inside text-gray-700 text-base md:text-lg mb-4">
-    <li>Trato cálido y profesional</li>
-    <li>Resultados visibles</li>
-    <li>Pasión por tu bienestar</li>
-  </ul>
-</div>
-
-          <blockquote class="border-l-4 border-pink-400 pl-4 italic text-gray-600 mt-4">
-            "Sentirte bien empieza por verte bien. Estoy aquí para ayudarte a brillar con tu propia luz."
-          </blockquote>
+    <section id="sobre-mi" class="relative bg-gradient-to-br from-pink-50 via-white to-rose-50 py-24 px-6 overflow-hidden">
+      <!-- Decorative Elements -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-pink-200/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-rose-200/15 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full mb-4">
+            <span class="text-pink-700 font-medium text-sm">🌸 Conoce a tu especialista</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Sobre <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">mí</span>
+          </h2>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Image Section -->
+          <div class="relative" data-aos="fade-right">
+            <!-- Main Image -->
+            <div class="relative max-w-md mx-auto lg:mx-0">
+              <div class="absolute -inset-4 bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl blur-lg opacity-20"></div>
+              <div class="relative bg-white p-2 rounded-3xl shadow-2xl">
+                <img
+                  src="https://i.ibb.co/RpYXk8Gt/Imagen-de-Whats-App-2025-07-17-a-las-00-59-40-95ff6e97.jpg"
+                  alt="Karla Salas - KS Cosmetóloga"
+                  class="rounded-2xl w-full h-auto object-cover shadow-lg"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            
+            <!-- Floating Stats -->
+            <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-pink-600">5+</div>
+                <div class="text-xs text-gray-600">Años</div>
+              </div>
+            </div>
+            
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100" data-aos="fade-up" data-aos-delay="400">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-pink-600">500+</div>
+                <div class="text-xs text-gray-600">Clientas</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Content Section -->
+          <div class="space-y-8" data-aos="fade-left">
+            <!-- Introduction -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">¡Hola! Soy Karla Salas</h3>
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                Cosmetóloga profesional y fundadora de <strong class="text-pink-600">KS Cosmetóloga</strong>. Me apasiona el cuidado de la piel y he dedicado mi carrera a ayudar a otras personas a verse y sentirse mejor.
+              </p>
+              
+              <!-- Education -->
+              <div class="flex items-start space-x-4 mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Formación Profesional</h4>
+                  <p class="text-gray-600">Graduada de <strong>UNPHU</strong> con conocimientos avanzados en estética facial, limpieza profunda y tratamientos rejuvenecedores.</p>
+                </div>
+              </div>
+              
+              <!-- Experience -->
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Experiencia Comprobada</h4>
+                  <p class="text-gray-600">Con años de experiencia, ofrezco atención personalizada con resultados reales desde la primera sesión.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Values -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Mis valores</h3>
+              <div class="grid gap-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-gray-700">Trato cálido y profesional</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-gray-700">Resultados visibles y duraderos</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                  <span class="text-gray-700">Pasión por tu bienestar</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Quote -->
+            <div class="relative bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-8 text-white shadow-xl">
+              <div class="absolute top-4 left-4 text-4xl opacity-20">“</div>
+              <blockquote class="text-lg italic font-medium text-center relative z-10">
+                Sentirte bien empieza por verte bien. Estoy aquí para ayudarte a brillar con tu propia luz.
+              </blockquote>
+              <div class="text-center mt-4">
+                <cite class="text-pink-100 font-semibold">- Karla Salas</cite>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contacto WhatsApp -->
-    <section class="bg-pink-100 py-16 px-6 text-center">
-      <h2 class="text-3xl font-semibold text-gray-800 mb-4">¿Tienes dudas?</h2>
-      <p class="text-gray-700 mb-6">Escríbenos por WhatsApp y agenda tu evaluación.</p>
-      <a
-        href="https://wa.me/18099582261"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transition"
-      >
-        Hablar por WhatsApp
-      </a>
+    <section class="relative bg-gradient-to-br from-green-50 via-white to-green-25 py-24 px-6 overflow-hidden">
+      <!-- Background Decorations -->
+      <div class="absolute top-0 left-0 w-80 h-80 bg-green-200/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-green-300/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-5xl mx-auto text-center">
+        <!-- Section Header -->
+        <div class="mb-12" data-aos="fade-up">
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full mb-4">
+            <span class="text-green-700 font-medium text-sm">💬 ¿Tienes preguntas?</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Estamos aquí para <span class="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">ayudarte</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Contáctanos por WhatsApp para resolver todas tus dudas y agendar tu evaluación gratuita.
+          </p>
+        </div>
+        
+        <!-- Contact Card -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <!-- WhatsApp Icon -->
+          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
+            </svg>
+          </div>
+          
+          <!-- Content -->
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Chatea con nosotros</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Nuestro equipo está disponible para responder todas tus preguntas sobre tratamientos, precios y disponibilidad.
+          </p>
+          
+          <!-- Benefits -->
+          <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="flex items-center justify-center space-x-2">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-gray-600">Respuesta inmediata</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-gray-600">Horario extendido</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-gray-600">Asesoría personalizada</span>
+            </div>
+          </div>
+          
+          <!-- CTA Button -->
+          <a
+            href="https://wa.me/18099582261?text=Hola%20KS%20Cosmet%C3%B3loga%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20tratamientos%20faciales"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+          >
+            <svg class="mr-3 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
+            </svg>
+            <span class="relative z-10">Hablar por WhatsApp</span>
+            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </a>
+          
+          <!-- Phone Number -->
+          <p class="mt-4 text-green-600 font-semibold">+1 (809) 958-2261</p>
+        </div>
+        
+        <!-- Additional Info -->
+        <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
+          <p class="text-gray-600 mb-2">🕰️ <strong>Horario de atención:</strong> Lunes a Sábado 9:00 AM - 7:00 PM</p>
+          <p class="text-gray-600">📍 <strong>Ubicación:</strong> Av. Duarte #123, Santo Domingo Oeste</p>
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

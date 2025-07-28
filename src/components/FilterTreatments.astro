@@ -1,0 +1,48 @@
+---
+import TreatmentCard from './TreatmentCard.astro';
+
+interface Treatment {
+  icon?: string;
+  iconSvg?: string;
+  icon: string;
+  title: string;
+  description: string;
+  category: 'Facial' | 'Corporal';
+}
+
+interface Props {
+  treatments: Treatment[];
+}
+
+const { treatments } = Astro.props as Props;
+const categories = ['Facial', 'Corporal'];
+---
+<div x-data="{cat: 'Facial'}" class="w-full" data-aos="fade-up">
+  <!-- Tabs -->
+  <div class="flex justify-center mb-8 gap-4">
+    <template x-for="c in ['Facial','Corporal']" :key="c">
+      <button
+        @click="cat = c"
+        :class="cat === c ? 'bg-pink-600 text-white' : 'bg-pink-100 text-pink-700 hover:bg-pink-200'"
+        class="py-2 px-4 rounded-full transition font-medium"
+      >
+        <span x-text="c"></span>
+      </button>
+    </template>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {treatments.map(t => (
+      <div x-show={`cat === '${t.category}'`} class="w-full">
+        {t.iconSvg ? (
+          <TreatmentCard icon="" title={t.title} description={t.description}>
+            <span slot="icon" set:html={t.iconSvg}></span>
+          </TreatmentCard>
+        ) : (
+          <TreatmentCard icon={t.icon ?? ''} title={t.title} description={t.description} />
+        )}
+      </div>
+    ))}
+  </div>
+</div>

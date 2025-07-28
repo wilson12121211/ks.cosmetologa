@@ -4,15 +4,126 @@ ighthouse tweaks (preload fuentes locales, minify OG image).
 import Hero from '../components/Hero.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
+import FilterTreatments from '../components/FilterTreatments.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
 
 export const layout = "../layouts/BaseLayout.astro";
 export const title = "Tratamientos";
-export const description = "Conoce todos los tratamientos disponibles en KS Cosmetóloga.";
+export const description = "Conoce nuestros tratamientos faciales y corporales.";
+
+const treatments = [
+  {
+    title:'Limpieza Profunda',
+    description:'Elimina impurezas y revitaliza tu piel.',
+    category:'Facial',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/sparkles.svg#icon' /></svg>`
+  },
+  {
+    title:'Celuma LED',
+    description:'Fototerapia que estimula el colágeno y mejora la textura.',
+    category:'Facial',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/sun.svg#icon' /></svg>`
+  },
+  {
+    title:'Peeling Químico',
+    description:'Renovación celular para un tono uniforme.',
+    category:'Facial',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/wand-magic.svg#icon' /></svg>`
+  },
+  {
+    title:'Radiofrecuencia',
+    description:'Reafirma y rejuvenece sin cirugía.',
+    category:'Facial',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/signal.svg#icon' /></svg>`
+  },
+  {
+    title:'Limpieza de Espalda',
+    description:'Especial para pieles con acné o foliculitis.',
+    category:'Corporal',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/droplet.svg#icon' /></svg>`
+  },
+  {
+    title:'Exfoliación + Hidratación',
+    description:'Piel suave y saludable.',
+    category:'Corporal',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/water.svg#icon' /></svg>`
+  },
+  {
+    title:'Masaje Relajación',
+    description:'Relaja cuerpo y mente con un masaje integral.',
+    category:'Corporal',
+    iconSvg:`<svg class='w-10 h-10 text-pink-600'><use href='/icons/hand-raised.svg#icon' /></svg>`
+  }
+];
+
+
+
+const testimonials = [
+  {name:'Laura G.', text:'Mi piel cambió por completo después de la limpieza profunda. ¡Excelente servicio!', photo:'/avatars/laura.webp'},
+  {name:'Ana P.', text:'La radiofrecuencia me dejó la piel súper firme, lo recomiendo.', photo:'/avatars/ana.webp'},
+  {name:'María R.', text:'El trato es muy profesional y los resultados increíbles.', photo:'/avatars/maria.webp'}
+];
 ---
 
-<section class="bg-gradient-to-b from-pink-100 to-white py-20 px-6 animate-fadeIn">
-  <div class="max-w-5xl mx-auto text-center">
-    <h1 class="text-4xl font-extrabold text-pink-800 mb-4">Nuestros Tratamientos</h1>
+<!-- HERO -->
+<Hero title="Tratamientos" subtitle="Descubre el cuidado ideal para tu piel y cuerpo" ctaText="Reserva ahora" ctaHref="/reserva" bgImage={import.meta.env.BASE_URL + 'hero_treatments.jpg'} />
+
+<!-- FILTRO DE TRATAMIENTOS -->
+<section class="py-20 px-6 bg-white">
+  <SectionTitle title="Explora nuestros tratamientos" subtitle="Filtra por categoría y encuentra el servicio perfecto" />
+  <FilterTreatments treatments={treatments} />
+</section>
+
+<!-- GALERÍA RESULTADOS -->
+<section class="py-20 px-6 bg-pink-50">
+  <SectionTitle title="Resultados reales" />
+  <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto" data-aos="fade-up">
+    {Array.from({length:6}).map((_,i)=>(
+      <a href={`/gallery/res_${i+1}.jpg`} data-lightbox="results" class="block overflow-hidden rounded-xl">
+        <img src={`/gallery/res_${i+1}.jpg`} alt={`Resultado ${i+1}`} class="w-full h-60 object-cover hover:scale-105 transition" loading="lazy" />
+      </a>
+    ))}
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="py-20 px-6 bg-white text-center">
+  <SectionTitle title="Historias de éxito" subtitle="Lo que dicen nuestras clientas" />
+  <div class="max-w-3xl mx-auto">
+    <TestimonialSlider testimonials={testimonials} />
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 px-6 bg-pink-50">
+  <SectionTitle title="Preguntas frecuentes" />
+  <div class="max-w-4xl mx-auto" x-data="{open:null}">
+    <template x-for="(q,idx) in [
+      {q:'¿Con qué frecuencia debo hacerme una limpieza facial?',a:'Recomendamos cada 4-6 semanas para mantener la piel saludable.'},
+      {q:'¿Duele la radiofrecuencia?',a:'Es un tratamiento indoloro; solo se siente calor agradable.'},
+      {q:'¿Puedo combinar varios tratamientos?',a:'Sí, diseñamos un plan personalizado según tus necesidades.'}
+    ]" :key="idx">
+      <div class="mb-4 border border-pink-200 rounded-lg overflow-hidden">
+        <button @click="open=open===idx?null:idx" class="w-full flex justify-between items-center p-4 bg-white hover:bg-pink-100">
+          <span x-text="q.q" class="font-medium text-pink-700"></span>
+          <span x-text="open===idx?'−':'+'" class="text-xl font-bold text-pink-700"></span>
+        </button>
+        <div x-show="open===idx" x-collapse class="p-4 bg-white text-gray-600" x-text="q.a"></div>
+      </div>
+    </template>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-20 px-6 bg-pink-600 text-center text-white" data-aos="fade-up">
+  <h2 class="text-3xl md:text-4xl font-semibold mb-4">¿Lista para lucir tu mejor versión?</h2>
+  <p class="mb-6 text-lg">Agenda tu cita hoy mismo y déjanos cuidar de ti.</p>
+  <a href="https://wa.me/18099582261" target="_blank" class="inline-block bg-white text-pink-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-50 transition">
+    Hablar por WhatsApp
+  </a>
+</section>
+  
+    </h1>
     <p class="text-gray-600 text-lg mb-6">Descubrí cómo cada tratamiento está diseñado para realzar tu belleza natural y cuidar tu piel.</p>
 
     <!-- Botón de reserva -->
@@ -25,18 +136,18 @@ export const description = "Conoce todos los tratamientos disponibles en KS Cosm
     </a>
   </div>
 
-  <!-- Tratamientos Faciales -->
+
   <div class="max-w-5xl mx-auto mb-16">
     <SectionTitle title="Tratamientos Faciales" />
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <TreatmentCard icon="🧼" title="Limpieza Profunda" description="Ideal para eliminar impurezas, puntos negros y revitalizar tu piel." />
+       description="Ideal para eliminar impurezas, puntos negros y revitalizar tu piel." />
       <TreatmentCard icon="💡" title="Celuma LED" description="Fototerapia con luz LED que estimula el colágeno y mejora la textura." />
       <TreatmentCard icon="✨" title="Peeling Químico" description="Renovación celular con ácidos controlados para una piel más uniforme." />
       <TreatmentCard icon="🔊" title="Radiofrecuencia" description="Tensa y rejuvenece la piel mediante calor interno sin cirugía." />
     </div>
   </div>
 
-  <!-- Tratamientos Corporales -->
+
   <div class="max-w-5xl mx-auto">
     <SectionTitle title="Tratamientos Corporales" />
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

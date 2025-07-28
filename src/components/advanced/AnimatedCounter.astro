@@ -1,0 +1,73 @@
+---
+export interface Props {
+  number: number;
+  label: string;
+  suffix?: string;
+  prefix?: string;
+  duration?: number;
+  icon?: string;
+  color?: 'pink' | 'purple' | 'blue' | 'green';
+}
+
+const {
+  number,
+  label,
+  suffix = '',
+  prefix = '',
+  duration = 2000,
+  icon,
+  color = 'pink'
+} = Astro.props;
+
+const colorClasses = {
+  pink: 'from-pink-500 to-pink-600',
+  purple: 'from-purple-500 to-purple-600',
+  blue: 'from-blue-500 to-blue-600',
+  green: 'from-green-500 to-green-600'
+};
+---
+
+<div 
+  class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+  x-data={`{
+    currentNumber: 0,
+    targetNumber: ${number},
+    hasAnimated: false,
+    animateCounter() {
+      if (this.hasAnimated) return;
+      this.hasAnimated = true;
+      
+      const increment = this.targetNumber / (${duration} / 16);
+      const timer = setInterval(() => {
+        this.currentNumber += increment;
+        if (this.currentNumber >= this.targetNumber) {
+          this.currentNumber = this.targetNumber;
+          clearInterval(timer);
+        }
+      }, 16);
+    }
+  }`}
+  x-intersect.once="animateCounter()"
+>
+  <!-- Icon -->
+  {icon && (
+    <div class={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${colorClasses[color]} text-white rounded-2xl mb-4 shadow-lg`}>
+      <span class="text-2xl">{icon}</span>
+    </div>
+  )}
+  
+  <!-- Animated Number -->
+  <div class={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${colorClasses[color]} bg-clip-text text-transparent mb-2`}>
+    <span x-text={`'${prefix}' + Math.floor(currentNumber) + '${suffix}'`}>
+      {prefix}{number}{suffix}
+    </span>
+  </div>
+  
+  <!-- Label -->
+  <p class="text-gray-600 font-medium text-lg">
+    {label}
+  </p>
+  
+  <!-- Decorative Element -->
+  <div class={`w-12 h-1 bg-gradient-to-r ${colorClasses[color]} rounded-full mx-auto mt-3 opacity-60`}></div>
+</div>

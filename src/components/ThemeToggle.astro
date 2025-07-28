@@ -1,0 +1,20 @@
+---
+import { useEffect, useState } from 'astro/jsx-runtime';
+---
+<button
+  aria-label="Cambiar tema"
+  class="fixed bottom-5 left-5 md:bottom-8 md:left-8 bg-pink-500 dark:bg-yellow-400 text-white dark:text-gray-900 p-3 rounded-full shadow-lg hover:scale-110 transition"
+  x-data
+  @click="document.documentElement.classList.toggle('dark')"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 3.1A9 9 0 0 0 12 21a9 9 0 0 0 0-17.9Z"
+    />
+  </svg>
+</button>

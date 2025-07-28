@@ -1,13 +1,16 @@
 ---
-layout: "../layouts/BaseLayout.astro"
-title: "Reserva tu Cita"
+import "../styles/tailwind.css";
+
+export const layout = "../layouts/BaseLayout.astro";
+export const title = "Reserva tu Cita";
+export const description = "Reserva tu cita en KS Cosmetóloga desde nuestra app online.";
 ---
 
 <section class="py-16 px-6 bg-pink-50 text-center">
   <h1 class="text-3xl font-semibold text-pink-800 mb-4">Reserva tu cita</h1>
   <p class="text-gray-700 mb-6">Haz clic en el botón para acceder directamente a la app de reservas.</p>
   <a
-    href="https://TULINKAPP"
+    href="https://kscosmetcitas.netlify.app/"
     class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow transition"
     target="_blank"
     rel="noopener noreferrer"

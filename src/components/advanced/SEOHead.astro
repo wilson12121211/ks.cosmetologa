@@ -1,0 +1,193 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article' | 'service';
+  noindex?: boolean;
+  canonical?: string;
+  structuredData?: any;
+}
+
+const {
+  title,
+  description,
+  keywords = [],
+  image,
+  url,
+  type = 'website',
+  noindex = false,
+  canonical,
+  structuredData
+} = Astro.props;
+
+// Default values from site config
+const siteName = "KS Cosmetóloga";
+const defaultTitle = "KS Cosmetóloga - Tratamientos Faciales y Corporales Profesionales";
+const defaultDescription = "Centro especializado en tratamientos cosmetológicos avanzados. Limpieza facial, radiofrecuencia, peeling químico y más. Resultados garantizados en Santo Domingo.";
+const defaultImage = "/og-image.jpg";
+const siteUrl = "https://kscosmetologa.com";
+
+// Computed values
+const finalTitle = title ? `${title} | ${siteName}` : defaultTitle;
+const finalDescription = description || defaultDescription;
+const finalImage = image || defaultImage;
+const finalUrl = url || Astro.url.href;
+const finalCanonical = canonical || finalUrl;
+
+// Generate structured data for local business
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": siteName,
+  "description": finalDescription,
+  "url": siteUrl,
+  "telephone": "+1-809-958-2261",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santo Domingo",
+    "addressCountry": "DO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "18.4861",
+    "longitude": "-69.9312"
+  },
+  "openingHours": [
+    "Mo-Fr 09:00-18:00",
+    "Sa 09:00-16:00"
+  ],
+  "priceRange": "$$",
+  "servesCuisine": [],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Tratamientos Cosmetológicos",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Limpieza Facial Profunda",
+          "description": "Eliminación profunda de impurezas y puntos negros"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Celuma LED Terapia",
+          "description": "Fototerapia para estimular colágeno"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Radiofrecuencia",
+          "description": "Reafirmación y rejuvenecimiento facial"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "https://instagram.com/kscosmetologa",
+    "https://facebook.com/kscosmetologa"
+  ]
+};
+
+const finalStructuredData = structuredData || defaultStructuredData;
+---
+
+<!-- Primary Meta Tags -->
+<title>{finalTitle}</title>
+<meta name="title" content={finalTitle} />
+<meta name="description" content={finalDescription} />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+<link rel="canonical" href={finalCanonical} />
+
+<!-- Robots -->
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={finalUrl} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={finalDescription} />
+<meta property="og:image" content={finalImage} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="es_DO" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={finalUrl} />
+<meta property="twitter:title" content={finalTitle} />
+<meta property="twitter:description" content={finalDescription} />
+<meta property="twitter:image" content={finalImage} />
+
+<!-- Additional Meta Tags for Beauty/Health -->
+<meta name="author" content={siteName} />
+<meta name="theme-color" content="#ec4899" />
+<meta name="msapplication-TileColor" content="#ec4899" />
+
+<!-- Geo Tags -->
+<meta name="geo.region" content="DO-01" />
+<meta name="geo.placename" content="Santo Domingo" />
+<meta name="geo.position" content="18.4861;-69.9312" />
+<meta name="ICBM" content="18.4861, -69.9312" />
+
+<!-- Business/Service Specific -->
+<meta name="business:contact_data:street_address" content="Santo Domingo" />
+<meta name="business:contact_data:locality" content="Santo Domingo" />
+<meta name="business:contact_data:region" content="Distrito Nacional" />
+<meta name="business:contact_data:postal_code" content="10100" />
+<meta name="business:contact_data:country_name" content="República Dominicana" />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(finalStructuredData)} />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.whatsapp.com" />
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="//instagram.com" />
+<link rel="dns-prefetch" href="//facebook.com" />
+<link rel="dns-prefetch" href="//wa.me" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<!-- Manifest -->
+<link rel="manifest" href="/manifest.json" />
+
+<!-- Performance Hints -->
+<meta name="format-detection" content="telephone=yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Critical CSS Preload -->
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- Analytics & Tracking (placeholder) -->
+<!-- Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
+
+<!-- Facebook Pixel -->
+<!-- <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'PIXEL_ID');
+  fbq('track', 'PageView');
+</script> -->
