@@ -1,0 +1,21 @@
+{
+  "name": "KS Cosmetóloga",
+  "short_name": "KS Cosmetóloga",
+  "description": "Tu piel merece lo mejor. Tratamientos faciales personalizados.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

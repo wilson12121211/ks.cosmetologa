@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+export const title = "Sobre mí";
+---
+
+<BaseLayout title="Sobre mí - KS Cosmetóloga" description="Conoce a Karla Salas, cosmetóloga profesional y fundadora de KS Cosmetóloga.">
+  <!-- HERO SOBRE MÍ -->
+  <section class="relative overflow-hidden pt-32 pb-20 bg-gradient-to-br from-white via-pink-50 to-rose-50">
+    <!-- Blobs decorativos -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 -right-24 w-[28rem] h-[28rem] bg-rose-200/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center px-4" data-aos="fade-up">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+        Sobre <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">mí</span>
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Conoce mi historia, experiencia y pasión por el cuidado de tu piel.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO SOBRE MÍ (copiado de la sección de inicio) -->
+  <section class="relative bg-gradient-to-br from-pink-50 via-white to-rose-50 py-24 px-6 overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-pink-200/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-rose-200/15 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Imagen principal -->
+        <div class="relative" data-aos="fade-right">
+          <div class="relative max-w-md mx-auto lg:mx-0">
+            <div class="absolute -inset-4 bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl blur-lg opacity-20"></div>
+            <div class="relative bg-white p-2 rounded-3xl shadow-2xl">
+              <img
+                src="https://i.ibb.co/RpYXk8Gt/Imagen-de-Whats-App-2025-07-17-a-las-00-59-40-95ff6e97.jpg"
+                alt="Karla Salas - KS Cosmetóloga"
+                class="rounded-2xl w-full h-auto object-cover shadow-lg"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Estadísticas flotantes -->
+          <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-pink-600">5+</div>
+              <div class="text-xs text-gray-600">Años</div>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-pink-100" data-aos="fade-up" data-aos-delay="400">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-pink-600">500+</div>
+              <div class="text-xs text-gray-600">Clientas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido textual -->
+        <div class="space-y-8" data-aos="fade-left">
+          <!-- Introducción -->
+          <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">¡Hola! Soy Karla Salas</h3>
+            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+              Cosmetóloga profesional y fundadora de <strong class="text-pink-600">KS Cosmetóloga</strong>. Me apasiona el cuidado de la piel y he dedicado mi carrera a ayudar a otras personas a verse y sentirse mejor.
+            </p>
+
+            <!-- Formación -->
+            <div class="flex items-start space-x-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 mb-1">Formación Profesional</h4>
+                <p class="text-gray-600">Graduada de <strong>UNPHU</strong> con conocimientos avanzados en estética facial, limpieza profunda y tratamientos rejuvenecedores.</p>
+              </div>
+            </div>
+
+            <!-- Experiencia -->
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 mb-1">Experiencia Comprobada</h4>
+                <p class="text-gray-600">Con años de experiencia, ofrezco atención personalizada con resultados reales desde la primera sesión.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valores -->
+          <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-100">
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Mis valores</h3>
+            <div class="grid gap-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                <span class="text-gray-700">Trato cálido y profesional</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                <span class="text-gray-700">Resultados visibles y duraderos</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                <span class="text-gray-700">Pasión por tu bienestar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cita -->
+          <div class="relative bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl p-8 text-white shadow-xl">
+            <div class="absolute top-4 left-4 text-4xl opacity-20">“</div>
+            <blockquote class="text-lg italic font-medium text-center relative z-10">
+              Sentirte bien empieza por verte bien. Estoy aquí para ayudarte a brillar con tu propia luz.
+            </blockquote>
+            <div class="text-center mt-4">
+              <cite class="text-pink-100 font-semibold">- Karla Salas</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

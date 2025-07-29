@@ -7,12 +7,14 @@ import SEOHead from '../components/advanced/SEOHead.astro';
 interface Props {
   title?: string;
   description?: string;
+  fluid?: boolean;
 }
 
 const {
   title = "KS Cosmetóloga",
-  description = "Tu piel merece lo mejor. Tratamientos faciales personalizados."
-} = Astro.props;
+  description = "Tu piel merece lo mejor. Tratamientos faciales personalizados.",
+  fluid = false
+} = Astro.props as Props;
 ---
 
 <html lang="es">
@@ -23,7 +25,6 @@ const {
     <!-- Dynamic SEO -->
     <SEOHead title={title} description={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/lightbox2/css/lightbox.min.css" is:inline />
@@ -61,7 +62,7 @@ const {
     </header>
 
 
-    <main class="container mx-auto px-4 py-8">
+    <main class={fluid ? 'px-0' : 'container mx-auto px-4 py-8'}>
       <slot />
     </main>
 
@@ -102,10 +103,50 @@ const {
       <p class="mt-6 text-sm">© 2025 KS Cosmetóloga - Todos los derechos reservados</p>
     </footer>
 
+   <script>
+     // Cargar AOS de forma segura
+     (function() {
+       const script = document.createElement('script');
+       script.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
+       script.onload = function() {
+         if (typeof AOS !== 'undefined') {
+           AOS.init({ 
+             once: true,
+             duration: 800,
+             easing: 'ease-out-cubic',
+             disable: 'mobile'
+           });
+         }
+       };
+       script.onerror = function() {
+         console.warn('AOS library failed to load');
+       };
+       document.head.appendChild(script);
+     })();
+   </script>
+   <!-- jQuery (core) -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- Lightbox2 (solo cuando jQuery esté listo) -->
+   <script>
+     (function() {
+       function loadLightbox() {
+         if (window.jQuery) {
+           const s = document.createElement('script');
+           s.src = 'https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js';
+           document.head.appendChild(s);
+         } else {
+           // Reintenta hasta 5 veces
+           if ((window._lbTry = (window._lbTry||0)+1) < 6) {
+             setTimeout(loadLightbox, 300);
+           } else {
+             console.warn('jQuery no disponible, Lightbox no se cargó');
+           }
+         }
+       }
+       loadLightbox();
+     })();
+   </script>
    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-   <script src="/lightbox2/js/lightbox.min.js" is:inline></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>document.addEventListener('alpine:init', () => { AOS.init({ once:true}); });</script>
     <!-- Botón flotante WhatsApp -->
     <a href="https://wa.me/18099582261" target="_blank" aria-label="WhatsApp" class="fixed bottom-5 right-5 md:bottom-8 md:right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition transform hover:scale-110">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

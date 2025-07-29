@@ -16,12 +16,466 @@ const post = posts.find((p) => p.slug === slug);
 if (!post) {
   throw new Error(`No se encontró el post con slug: ${slug}`);
 }
+
+const readingTime = Math.ceil(post.body.split(/\s+/).length / 200);
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="max-w-3xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-pink-700 mb-4">{post.data.title}</h1>
-    <p class="text-gray-500 text-sm mb-6">Publicado el {post.data.pubDate}</p>
-    <div class="prose prose-pink max-w-none" set:html={post.body} />
+  <!-- Barra de progreso de lectura -->
+  <div id="progressBar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-pink-500 to-purple-600 w-0 z-[9999] transition-all duration-300"></div>
+  
+  <!-- Hero Section Premium -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={post.data.image || `https://picsum.photos/seed/${post.slug}/1200/600.webp`} alt={post.data.title} class="w-full h-full object-cover scale-110" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-br from-pink-900/50 via-purple-900/40 to-black/30"></div>
+    </div>
+    
+    <!-- Elementos decorativos flotantes -->
+    <div class="absolute top-20 left-10 w-20 h-20 bg-pink-400/20 rounded-full blur-xl animate-pulse"></div>
+    <div class="absolute bottom-32 right-16 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+      <!-- Breadcrumb -->
+      <nav class="mb-6">
+        <div class="flex items-center justify-center space-x-2 text-pink-200 text-sm">
+          <a href="/" class="hover:text-white transition-colors">Inicio</a>
+          <span>•</span>
+          <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+          <span>•</span>
+          <span class="text-white">{post.data.category}</span>
+        </div>
+      </nav>
+      
+      <!-- Categoría badge -->
+      <div class="mb-4">
+        <span class="bg-pink-500/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-pink-400/30">
+          {post.data.category}
+        </span>
+      </div>
+      
+      <!-- Título principal -->
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white to-pink-100 bg-clip-text text-transparent">
+        {post.data.title}
+      </h1>
+      
+      <!-- Meta información -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-pink-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+            <span class="text-xs font-bold">KS</span>
+          </div>
+          <span class="text-sm">{post.data.author || 'KS Cosmetóloga'}</span>
+        </div>
+        <span class="hidden sm:block">•</span>
+        <span class="text-sm">{new Date(post.data.pubDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        <span class="hidden sm:block">•</span>
+        <span class="text-sm">{readingTime} min de lectura</span>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contenido del artículo -->
+  <article class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Contenido procesado del markdown -->
+    <div class="prose prose-lg prose-pink max-w-none" set:html={post.body} />
   </article>
+
+  <!-- Sección compartir premium -->
+  <section class="max-w-4xl mx-auto px-6 pb-16">
+    <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 border border-pink-100">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2"> ¿Te gustó este artículo?</h2>
+        <p class="text-gray-600">Compartilo con tus amigas y ayudá a más personas a descubrir estos consejos</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" target="_blank" rel="noopener" class="group flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Compartir en WhatsApp">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <span class="font-medium">WhatsApp</span>
+        </a>
+        
+        <a href="#" target="_blank" rel="noopener" class="group flex items-center gap-3 bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Compartir en Twitter">
+          <i class="fa-brands fa-x-twitter text-xl"></i>
+          <span class="font-medium">Twitter</span>
+        </a>
+        
+        <a href="#" class="group flex items-center gap-3 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg" aria-label="Compartir por Email">
+          <i class="fa-solid fa-envelope text-xl"></i>
+          <span class="font-medium">Email</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA para contacto -->
+  <section class="max-w-4xl mx-auto px-6 pb-16">
+    <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl p-8 text-center relative overflow-hidden">
+      <!-- Elementos decorativos -->
+      <div class="absolute top-4 right-4 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
+      <div class="absolute bottom-4 left-4 w-20 h-20 bg-white/5 rounded-full blur-2xl"></div>
+      
+      <div class="relative z-10">
+        <h3 class="text-2xl font-bold mb-4">🌟 ¿Tenés dudas sobre este tratamiento?</h3>
+        <p class="mb-6 opacity-90 max-w-2xl mx-auto">Consultá conmigo de forma gratuita. Te asesoro sobre el mejor tratamiento para tu tipo de piel.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="https://wa.me/18099582261" class="bg-white text-pink-600 px-8 py-3 rounded-full font-bold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            📲 Consulta Gratuita por WhatsApp
+          </a>
+          <span class="text-sm opacity-75">Respuesta inmediata • Sin compromiso</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Funcionalidad del blog mejorada
+    document.addEventListener('DOMContentLoaded', () => {
+      // Barra de progreso de lectura
+      const progressBar = document.getElementById('progressBar');
+      const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+      };
+      
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      
+      // Enlaces de compartir dinámicos
+      const currentURL = encodeURIComponent(window.location.href);
+      const currentTitle = encodeURIComponent(document.title);
+      
+      const shareButtons = {
+        whatsapp: document.querySelector('[aria-label="Compartir en WhatsApp"]'),
+        twitter: document.querySelector('[aria-label="Compartir en Twitter"]'),
+        email: document.querySelector('[aria-label="Compartir por Email"]')
+      };
+      
+      if (shareButtons.whatsapp) {
+        shareButtons.whatsapp.href = `https://wa.me/?text=${currentTitle}%20${currentURL}`;
+      }
+      
+      if (shareButtons.twitter) {
+        shareButtons.twitter.href = `https://twitter.com/intent/tweet?text=${currentTitle}&url=${currentURL}`;
+      }
+      
+      if (shareButtons.email) {
+        shareButtons.email.href = `mailto:?subject=${currentTitle}&body=Te recomiendo este artículo: ${currentURL}`;
+      }
+      
+      // Modal para videos e imágenes
+      const modal = document.getElementById('mediaModal');
+      const mediaContainer = document.getElementById('mediaContainer');
+      
+      document.querySelectorAll('.prose img, .prose video, .prose iframe').forEach(element => {
+        element.style.cursor = 'pointer';
+        element.addEventListener('click', () => {
+          if (modal && mediaContainer) {
+            mediaContainer.innerHTML = '';
+            const clone = element.cloneNode(true);
+            clone.style.width = '100%';
+            clone.style.height = 'auto';
+            clone.removeAttribute('height');
+            mediaContainer.appendChild(clone);
+            modal.showModal();
+          }
+        });
+      });
+      
+      // Cerrar modal con Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.open) {
+          modal.close();
+        }
+      });
+      
+      // Animaciones de entrada para elementos
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      
+      // Observar elementos para animaciones
+      document.querySelectorAll('.prose > *').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+  <style>
+    /* Estilos para el contenido del blog */
+    .prose {
+      color: #374151;
+      line-height: 1.75;
+    }
+    
+    .prose h1, .prose h2, .prose h3, .prose h4 {
+      color: #1f2937;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .prose h1 {
+      font-size: 2.25rem;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .prose h2 {
+      font-size: 1.875rem;
+      color: #ec4899;
+      border-bottom: 2px solid #fce7f3;
+      padding-bottom: 0.5rem;
+    }
+    
+    .prose h3 {
+      font-size: 1.5rem;
+      color: #8b5cf6;
+    }
+    
+    .prose p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    
+    .prose strong {
+      color: #ec4899;
+      font-weight: 600;
+    }
+    
+    .prose ul, .prose ol {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .prose li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .prose ul li::marker {
+      color: #ec4899;
+    }
+    
+    .prose a {
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .prose a:hover {
+      color: #8b5cf6;
+      border-bottom-color: #8b5cf6;
+    }
+    
+    /* Estilos para imágenes y videos */
+    .prose img,
+    .prose video,
+    .prose iframe {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+      margin: 2rem 0;
+    }
+    
+    .prose img:hover,
+    .prose video:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Estilos para divs con clases especiales */
+    .prose .bg-gradient-to-r {
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .prose .grid {
+      gap: 1.5rem;
+    }
+    
+    .prose .bg-white {
+      transition: all 0.3s ease;
+    }
+    
+    .prose .bg-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Blockquotes */
+    .prose blockquote {
+      border-left: 4px solid #ec4899;
+      background: linear-gradient(135deg, #fdf2f8, #f3e8ff);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0.5rem;
+      font-style: italic;
+      position: relative;
+    }
+    
+    .prose blockquote::before {
+      content: '“';
+      font-size: 4rem;
+      color: #ec4899;
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+      opacity: 0.3;
+    }
+    
+    /* Ajustes responsivos */
+    @media (max-width: 768px) {
+      .prose {
+        font-size: 1rem;
+      }
+      
+      .prose h1 {
+        font-size: 1.875rem;
+      }
+      
+      .prose h2 {
+        font-size: 1.5rem;
+      }
+      
+      .prose h3 {
+        font-size: 1.25rem;
+      }
+      
+      .prose img,
+      .prose video {
+        margin: 1rem 0;
+      }
+    }
+    
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .prose > * {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Estilos para elementos colapsables */
+    details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1rem;
+      background: linear-gradient(135deg, #fdf2f8, #f3e8ff);
+      border-radius: 0.5rem;
+      font-weight: 600;
+      color: #ec4899;
+      transition: all 0.3s ease;
+    }
+    
+    details summary:hover {
+      background: linear-gradient(135deg, #fce7f3, #ede9fe);
+      transform: translateY(-1px);
+    }
+    
+    details[open] summary {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    details > *:not(summary) {
+      padding: 1rem;
+      background: #fafafa;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+  </style>
+
+  <script>
+    // Funcionalidad responsiva para móviles
+    document.addEventListener('DOMContentLoaded', () => {
+      const handleResponsiveContent = () => {
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+          // Convertir secciones en acordeones en móvil
+          document.querySelectorAll('.prose h2').forEach(h2 => {
+            if (h2.closest('details')) return; // Ya procesado
+            
+            const details = document.createElement('details');
+            details.className = 'mb-4 rounded-lg overflow-hidden';
+            details.open = false;
+            
+            const summary = document.createElement('summary');
+            summary.className = 'bg-gradient-to-r from-pink-100 to-purple-100 p-3 font-semibold text-pink-700 cursor-pointer hover:from-pink-200 hover:to-purple-200 transition-all';
+            summary.textContent = h2.textContent;
+            
+            const content = document.createElement('div');
+            content.className = 'p-4 bg-gray-50';
+            
+            details.appendChild(summary);
+            details.appendChild(content);
+            
+            // Mover contenido siguiente al acordeón
+            let sibling = h2.nextElementSibling;
+            while (sibling && sibling.tagName !== 'H2' && sibling.tagName !== 'H1') {
+              const next = sibling.nextElementSibling;
+              content.appendChild(sibling);
+              sibling = next;
+            }
+            
+            h2.replaceWith(details);
+          });
+        } else {
+          // Expandir todos los acordeones en desktop
+          document.querySelectorAll('details').forEach(details => {
+            details.open = true;
+          });
+        }
+      };
+      
+      // Ejecutar al cargar y al redimensionar
+      handleResponsiveContent();
+      window.addEventListener('resize', handleResponsiveContent);
+    });
+  </script>
+
+  <!-- Modal para medios -->
+  <dialog id="mediaModal" class="rounded-2xl overflow-hidden p-0 max-w-4xl w-full backdrop:bg-black/80 border-0">
+    <div class="relative bg-black">
+      <button 
+        class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm" 
+        onclick="this.closest('dialog').close()"
+        aria-label="Cerrar modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div id="mediaContainer" class="w-full"></div>
+    </div>
+  </dialog>
 </BaseLayout>

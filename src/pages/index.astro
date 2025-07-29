@@ -1,21 +1,41 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
-
-export const layout = "../layouts/BaseLayout.astro";
-export const title = "Inicio";
 ---
 
-<Layout>
-  <main>
-    <!-- Hero -->
-    <Hero title="Bienvenida a KS Cosmetóloga" subtitle="¡Tu piel merece lo mejor! Tratamientos faciales y corporales personalizados en Santo Domingo Oeste." ctaText="Reserva tu cita" ctaHref="/reserva" bgImage={import.meta.env.BASE_URL + 'hero_spa.jpg'} />
+<BaseLayout title="Inicio | KS Cosmetóloga" description="Tratamientos faciales y corporales personalizados en Santo Domingo Oeste. Tu piel merece lo mejor." fluid={true}>
+  <!-- Hero -->
+  <Hero 
+    title="Bienvenida a KS Cosmetóloga" 
+    subtitle="¡Tu piel merece lo mejor! Tratamientos faciales y corporales personalizados en Santo Domingo Oeste." 
+    ctaText="Reserva tu cita" 
+    ctaHref="/reserva" 
+    bgImage={import.meta.env.BASE_URL + 'hero_spa.jpg'} 
+  />
 
     
 
-    <!-- Servicios Destacados -->
+    <!-- Navegación rápida -->
+<section class="py-10 bg-white">
+  <div class="flex justify-center gap-6" data-aos="fade-up">
+    <a href="/resultados" class="group flex flex-col items-center">
+      <span class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-pink-100 text-pink-600 rounded-full text-2xl mb-2 group-hover:bg-pink-200 transition">🎆</span>
+      <span class="font-medium text-pink-700 group-hover:text-pink-800">Resultados</span>
+    </a>
+    <a href="/sobre-mi" class="group flex flex-col items-center">
+      <span class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-pink-100 text-pink-600 rounded-full text-2xl mb-2 group-hover:bg-pink-200 transition">🌸</span>
+      <span class="font-medium text-pink-700 group-hover:text-pink-800">Sobre mí</span>
+    </a>
+    <a href="/blog" class="group flex flex-col items-center">
+      <span class="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-pink-100 text-pink-600 rounded-full text-2xl mb-2 group-hover:bg-pink-200 transition">📚</span>
+      <span class="font-medium text-pink-700 group-hover:text-pink-800">Blog</span>
+    </a>
+  </div>
+</section>
+
+<!-- Servicios Destacados -->
     <section class="relative bg-gradient-to-br from-gray-50 via-white to-pink-50 py-24 px-6 overflow-hidden">
       <!-- Decorative Background -->
       <div class="absolute top-0 left-0 w-72 h-72 bg-pink-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
@@ -55,7 +75,7 @@ export const title = "Inicio";
     </section>
 
     <!-- Resultados Reales -->
-    <section class="relative bg-white py-24 px-6 overflow-hidden" id="resultados">
+    <section id="resultados" hidden>
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-5">
         <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 25% 25%, #ec4899 2px, transparent 2px), radial-gradient(circle at 75% 75%, #f43f5e 2px, transparent 2px); background-size: 50px 50px;"></div>
@@ -123,7 +143,7 @@ export const title = "Inicio";
     </section>
 
     <!-- Testimonios -->
-    <section class="relative bg-gradient-to-br from-gray-50 via-pink-25 to-rose-50 py-24 px-6 overflow-hidden" x-data="{current:0, testimonios:[
+    <section hidden class="relative bg-gradient-to-br from-gray-50 via-pink-25 to-rose-50 py-24 px-6 overflow-hidden" x-data="{current:0, testimonios:[
       {nombre:'Ana P.', texto:'Mi piel luce increíble desde la primera sesión! Karla es una profesional excepcional y los resultados hablan por sí solos.', foto:'https://randomuser.me/api/portraits/women/65.jpg', tratamiento:'Limpieza Facial', rating: 5},
       {nombre:'Laura M.', texto:'Excelente trato y resultados visibles. El ambiente es muy relajante y profesional. Totalmente recomendado.', foto:'https://randomuser.me/api/portraits/women/43.jpg', tratamiento:'Radiofrecuencia', rating: 5},
       {nombre:'Carla R.', texto:'¡La mejor experiencia de cuidado facial! Mi piel nunca se había visto tan radiante y saludable.', foto:'https://randomuser.me/api/portraits/women/22.jpg', tratamiento:'Peeling Químico', rating: 5},
@@ -222,22 +242,11 @@ export const title = "Inicio";
         </div>
       </div>
 
-      <script>
-        document.addEventListener('alpine:init', () => {
-          Alpine.effect(() => {
-            const comp = Alpine.$data(document.querySelector('[x-data*="testimonios"]'));
-            if(!comp) return;
-            clearInterval(comp._timer);
-            comp._timer = setInterval(() => {
-              comp.current = (comp.current + 1) % comp.testimonios.length;
-            }, 6000);
-          });
-        });
-      </script>
+
     </section>
 
     <!-- CTA Reserva -->
-    <section class="relative bg-gradient-to-br from-pink-600 via-rose-600 to-pink-700 py-24 px-6 text-center text-white overflow-hidden">
+    <section hidden class="relative bg-gradient-to-br from-pink-600 via-rose-600 to-pink-700 py-24 px-6 text-center text-white overflow-hidden">
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 20% 80%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 2px, transparent 2px), radial-gradient(circle at 40% 40%, white 1px, transparent 1px); background-size: 60px 60px, 80px 80px, 40px 40px;"></div>
@@ -303,12 +312,10 @@ export const title = "Inicio";
             <div class="absolute inset-0 bg-pink-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </a>
           
-          <a href="https://wa.me/18099582261" target="_blank" class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full shadow-xl transition-all duration-300 transform hover:scale-105">
-            <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
-            </svg>
-            <span>WhatsApp</span>
-          </a>
+          <a href="https://wa.me/18099582261?text=Hola%20KS%20Cosmet%C3%B3loga%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20tratamientos%20faciales" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition">
+       Hablar por WhatsApp
+     </a>
+     <p class="mt-3 text-green-600 font-semibold text-sm">+1 (809) 958-2261</p>
         </div>
         
         <!-- Urgency Text -->
@@ -319,7 +326,7 @@ export const title = "Inicio";
     </section>
 
     <!-- Blog -->
-    <section class="relative bg-gradient-to-br from-white via-pink-25 to-gray-50 py-24 px-6 overflow-hidden">
+    <section hidden class="relative bg-gradient-to-br from-white via-pink-25 to-gray-50 py-24 px-6 overflow-hidden">
       <!-- Decorative Elements -->
       <div class="absolute top-0 right-0 w-72 h-72 bg-pink-200/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
       <div class="absolute bottom-0 left-0 w-96 h-96 bg-rose-200/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
@@ -426,7 +433,7 @@ export const title = "Inicio";
     </section>
 
 	<!-- Sobre mí -->
-    <section id="sobre-mi" class="relative bg-gradient-to-br from-pink-50 via-white to-rose-50 py-24 px-6 overflow-hidden">
+    <section id="sobre-mi" hidden class="relative bg-gradient-to-br from-pink-50 via-white to-rose-50 py-24 px-6 overflow-hidden">
       <!-- Decorative Elements -->
       <div class="absolute top-0 right-0 w-64 h-64 bg-pink-200/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-rose-200/15 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
@@ -551,7 +558,7 @@ export const title = "Inicio";
       <div class="absolute top-0 left-0 w-80 h-80 bg-green-200/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div class="absolute bottom-0 right-0 w-96 h-96 bg-green-300/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
       
-      <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <div x-data="{ openModal: false }" class="relative z-10 max-w-5xl mx-auto text-center">
         <!-- Section Header -->
         <div class="mb-12" data-aos="fade-up">
           <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full mb-4">
@@ -565,77 +572,47 @@ export const title = "Inicio";
           </p>
         </div>
         
-        <!-- Contact Card -->
-        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-          <!-- WhatsApp Icon -->
-          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
-            </svg>
+        <!-- Card + Map Grid -->
+<div class="grid md:grid-cols-2 gap-8 items-start" data-aos="fade-up" data-aos-delay="200">
+  <!-- Botón WhatsApp (abre modal) -->
+  <div class="flex items-center justify-center">
+    <button @click="openModal=true" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
+      </svg>
+      <span class="ml-3">WhatsApp</span>
+    </button>
+  </div>
+
+  <!-- Tarjeta WhatsApp original oculta -->
+  <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-xl border border-green-100 w-full flex flex-col items-center text-center md:text-left hidden">
+  <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-xl border border-green-100 w-full flex flex-col items-center text-center md:text-left">
+    <!-- Icono -->
+    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-800 mb-2">Chatea con nosotros</h3>
+    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Resolvemos tus dudas sobre tratamientos, precios y disponibilidad.</p>
+    <!-- Beneficios -->
+    <ul class="text-sm text-gray-600 space-y-1 mb-4">
+      <li>✅ Respuesta inmediata</li>
+      <li>✅ Horario extendido</li>
+      <li>✅ Asesoría personalizada</li>
+    </ul>
+    <a href="https://wa.me/18099582261?text=Hola%20KS%20Cosmet%C3%B3loga%2C%20me%20interesa%20conocer%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition mb-2">
+      Hablar por WhatsApp
+    </a>
+    <p class="text-green-600 font-semibold text-sm">+1 (809) 958-2261</p>
+
           </div>
-          
-          <!-- Content -->
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">Chatea con nosotros</h3>
-          <p class="text-gray-600 mb-8 leading-relaxed">
-            Nuestro equipo está disponible para responder todas tus preguntas sobre tratamientos, precios y disponibilidad.
-          </p>
-          
-          <!-- Benefits -->
-          <div class="grid md:grid-cols-3 gap-4 mb-8">
-            <div class="flex items-center justify-center space-x-2">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Respuesta inmediata</span>
-            </div>
-            <div class="flex items-center justify-center space-x-2">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Horario extendido</span>
-            </div>
-            <div class="flex items-center justify-center space-x-2">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <span class="text-sm text-gray-600">Asesoría personalizada</span>
-            </div>
+  <!-- Columna Mapa -->
+          <div class="w-full" data-aos="fade-up" data-aos-delay="300">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.1334209483144!2d-70.02290678562385!3d19.4331019868818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eae2c0f0d8d7f53%3A0x1a2b3c4d5e6f7a8b!2sAv.%20Duarte%20123%2C%20Santo%20Domingo%20Oeste%2010902%2C%20Rep%C3%BAblica%20Dominicana!5e0!3m2!1ses-419!2sdo!4v1689101234567!5m2!1ses-419!2sdo" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-3xl shadow-lg"></iframe>
+            <p class="mt-3 text-gray-600 text-sm text-center md:text-left">📍 Av. Duarte #123, Santo Domingo Oeste</p>
           </div>
-          
-          <!-- CTA Button -->
-          <a
-            href="https://wa.me/18099582261?text=Hola%20KS%20Cosmet%C3%B3loga%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20tratamientos%20faciales"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
-          >
-            <svg class="mr-3 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.52 3.48A11.8 11.8 0 0012 .25C5.37.25.25 5.37.25 12c0 2.11.55 4.17 1.6 6l-1.66 6.07 6.22-1.63a11.84 11.84 0 005.6 1.43h.05c6.63 0 11.75-5.12 11.75-11.75 0-3.14-1.23-6.09-3.45-8.32zm-8.47 17.7h-.04a9.48 9.48 0 01-4.84-1.32l-.35-.2-3.69.97.99-3.6-.23-.37a9.55 9.55 0 011.54-11.71 9.58 9.58 0 0113.4.05 9.42 9.42 0 012.77 6.67c0 5.28-4.3 9.58-9.55 9.58zm5.3-7.15c-.29-.14-1.7-.84-1.96-.94-.26-.1-.45-.14-.64.15-.19.29-.74.94-.9 1.13-.17.19-.33.22-.62.07-.29-.14-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.44-.5.15-.16.19-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.77.36-.26.29-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .15.19 2.02 3.09 4.9 4.33.68.3 1.21.48 1.62.61.68.22 1.3.19 1.79.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.23.17-1.36-.06-.13-.26-.2-.55-.35z" />
-            </svg>
-            <span class="relative z-10">Hablar por WhatsApp</span>
-            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          </a>
-          
-          <!-- Phone Number -->
-          <p class="mt-4 text-green-600 font-semibold">+1 (809) 958-2261</p>
-        </div>
-        
-        <!-- Additional Info -->
-        <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
-          <p class="text-gray-600 mb-2">🕰️ <strong>Horario de atención:</strong> Lunes a Sábado 9:00 AM - 7:00 PM</p>
-          <p class="text-gray-600">📍 <strong>Ubicación:</strong> Av. Duarte #123, Santo Domingo Oeste</p>
         </div>
       </div>
     </section>
-  </main>
-</Layout>
-
+</BaseLayout>

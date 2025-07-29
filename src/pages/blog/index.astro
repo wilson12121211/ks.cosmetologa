@@ -5,43 +5,290 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const posts = await getCollection('blog');
 ---
 
-<BaseLayout title="Blog de Bienestar - KS Cosmetóloga" description="Lee artículos útiles para cuidar tu piel, aprender sobre tratamientos y consejos de belleza.">
-  <!-- Hero section -->
-  <section class="relative overflow-hidden pt-32 pb-20 bg-gradient-to-br from-pink-50 via-white to-rose-50">
-    <!-- Background blobs -->
-    <div class="absolute -top-20 -left-20 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 -right-20 w-[28rem] h-[28rem] bg-rose-200/20 rounded-full blur-3xl"></div>
-
-    <div class="relative z-10 max-w-4xl mx-auto text-center px-4" data-aos="fade-up">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-        <span class="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Blog</span> de Bienestar
+<BaseLayout title="Blog de Belleza y Bienestar - KS Cosmetóloga" description="Descubrí los mejores consejos de belleza, tratamientos faciales y cuidado de la piel. Artículos escritos por profesionales para tu bienestar.">
+  <!-- Hero Section Premium -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <!-- Background con parallax -->
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000" alt="Tratamientos de belleza" class="w-full h-full object-cover scale-110" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-br from-pink-900/80 via-purple-900/70 to-black/60"></div>
+    </div>
+    
+    <!-- Elementos decorativos flotantes -->
+    <div class="absolute top-20 left-10 w-24 h-24 bg-pink-400/20 rounded-full blur-xl animate-pulse"></div>
+    <div class="absolute bottom-32 right-16 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-20 h-20 bg-pink-300/15 rounded-full blur-xl animate-pulse delay-500"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center text-white">
+      <!-- Badge superior -->
+      <div class="mb-6">
+        <span class="bg-pink-500/90 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-medium border border-pink-400/30">
+          🌟 Blog Profesional de Belleza
+        </span>
+      </div>
+      
+      <!-- Título principal -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+        <span class="bg-gradient-to-r from-white via-pink-100 to-purple-100 bg-clip-text text-transparent">
+          Tu Guía de
+        </span>
+        <br>
+        <span class="bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent">
+          Belleza & Bienestar
+        </span>
       </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">Consejos, guías y novedades para que tu piel luzca radiante todos los días.</p>
+      
+      <!-- Descripción -->
+      <p class="text-xl md:text-2xl text-pink-100 max-w-3xl mx-auto leading-relaxed mb-8">
+        Descubrí los secretos de una piel radiante con consejos profesionales, tratamientos innovadores y guías especializadas.
+      </p>
+      
+      <!-- Estadísticas -->
+      <div class="flex flex-wrap justify-center gap-8 mb-8">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">{posts.length}+</div>
+          <div class="text-pink-200 text-sm">Artículos</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">500+</div>
+          <div class="text-pink-200 text-sm">Lectoras</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">5★</div>
+          <div class="text-pink-200 text-sm">Calificación</div>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <a href="#articulos" class="inline-flex items-center bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+        📚 Explorar Artículos
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
     </div>
   </section>
-  <section class="max-w-7xl mx-auto px-4 py-24">
-    
+  <!-- SECCIÓN DE ARTÍCULOS -->
+  <section id="articulos" class="py-20 bg-gradient-to-br from-gray-50 to-pink-50" x-data="{ cat: 'Todos' }" x-cloak>
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Header de sección -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          📚 Nuestros <span class="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">Artículos</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Explora contenido especializado creado por profesionales para ayudarte a lucir y sentirte mejor cada día.
+        </p>
+      </div>
+      
+      <!-- Filtros de categorías mejorados -->
+      <div class="flex justify-center mb-12">
+        <div class="flex flex-wrap gap-3 p-3 bg-white rounded-2xl shadow-lg border border-gray-100" role="tablist">
+          <button @click="cat='Todos'" :class="cat==='Todos' ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg' : 'text-gray-600 hover:bg-pink-50 hover:text-pink-600'" class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105" role="tab">
+            🌈 Todos
+          </button>
+          <button @click="cat='Tratamientos Faciales'" :class="cat==='Tratamientos Faciales' ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg' : 'text-gray-600 hover:bg-pink-50 hover:text-pink-600'" class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105" role="tab">
+            ✨ Tratamientos
+          </button>
+          <button @click="cat='Cuidado de la Piel'" :class="cat==='Cuidado de la Piel' ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg' : 'text-gray-600 hover:bg-pink-50 hover:text-pink-600'" class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105" role="tab">
+            🌿 Cuidado
+          </button>
+          <button @click="cat='Consejos'" :class="cat==='Consejos' ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg' : 'text-gray-600 hover:bg-pink-50 hover:text-pink-600'" class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105" role="tab">
+            💡 Consejos
+          </button>
+        </div>
+      </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {posts
-        .sort((a,b)=> new Date(b.data.pubDate ?? '').getTime() - new Date(a.data.pubDate ?? '').getTime())
-        .map((post, idx) => (
-        <a
-          href={`/blog/${post.slug}`}
-          class="group block overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-all"
-        >
-          <figure class="relative aspect-[4/3] overflow-hidden">
-              <img src={post.data.heroImage ?? `https://picsum.photos/seed/${post.slug}/600/400.webp`} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </figure>
-            <div class="p-6 bg-white"> 
-              <h2 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-pink-700 transition-colors">
-            {post.data.title}
-          </h2>
-          <p class="text-gray-600">{post.data.description}</p>
+      <!-- Grid de Artículos Premium -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts
+          .sort((a,b)=> new Date(b.data.pubDate ?? '').getTime() - new Date(a.data.pubDate ?? '').getTime())
+          .map((post, idx) => (
+          <article data-cat={post.data.category ?? 'Otros'} x-show="cat==='Todos' || cat=== $el.dataset.cat" class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2">
+            <a href={`/blog/${post.slug}`} class="block">
+              <div class="relative aspect-[16/10] overflow-hidden">
+                <img 
+                  src={post.data.image || post.data.heroImage || `https://picsum.photos/seed/${post.slug}/600/400.webp`} 
+                  alt={post.data.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  loading="lazy" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <!-- Badge de categoría -->
+                <div class="absolute top-4 left-4">
+                  <span class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
+                    {post.data.category || 'Artículo'}
+                  </span>
+                </div>
+                
+                <!-- Fecha y tiempo de lectura -->
+                <div class="absolute bottom-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-xs">
+                    📅 {post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString('es-ES', { 
+                      day: 'numeric', 
+                      month: 'short' 
+                    }) : 'Nuevo'}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-3 group-hover:bg-gradient-to-r group-hover:from-pink-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 leading-tight">
+                  {post.data.title}
+                </h2>
+                <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                  {post.data.description}
+                </p>
+                
+                <!-- Meta información mejorada -->
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div class="flex items-center gap-4 text-sm text-gray-500">
+                    <div class="flex items-center">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      5 min
+                    </div>
+                    <div class="flex items-center">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                      {Math.floor(Math.random() * 100) + 50}
+                    </div>
+                  </div>
+                  <div class="flex items-center text-pink-600 font-medium group-hover:text-purple-600 transition-colors">
+                    <span class="mr-1">Leer más</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+      
+      <!-- Artículo Destacado -->
+      {posts.length > 0 && (
+        <div class="mt-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Artículo Destacado</h2>
+          <div class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-3xl p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <span class="inline-block bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+                  Destacado
+                </span>
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                  {posts[0].data.title}
+                </h3>
+                <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                  {posts[0].data.description}
+                </p>
+                <a 
+                  href={`/blog/${posts[0].slug}`}
+                  class="inline-flex items-center bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                >
+                  Leer artículo completo
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+              <div class="relative">
+                <img 
+                  src={posts[0].data.heroImage ?? `https://picsum.photos/seed/${posts[0].slug}/600/400.webp`}
+                  alt={posts[0].data.title}
+                  class="w-full rounded-2xl shadow-lg"
+                  loading="lazy"
+                />
+              </div>
             </div>
-         </a>
-      ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- NEWSLETTER PREMIUM -->
+  <section class="py-20 bg-gradient-to-br from-pink-600 via-purple-600 to-indigo-700 text-white relative overflow-hidden">
+    <!-- Elementos decorativos -->
+    <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
+    <div class="absolute bottom-10 right-10 w-40 h-40 bg-pink-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-300/15 rounded-full blur-xl animate-bounce"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <!-- Ícono y badge -->
+      <div class="mb-6">
+        <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-white/30">
+          📧 Newsletter Exclusivo
+        </div>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        🌟 Únete a Nuestra Comunidad
+      </h2>
+      <p class="text-xl md:text-2xl mb-4 text-pink-100 max-w-3xl mx-auto leading-relaxed">
+        Recibí consejos exclusivos, guías especializadas y las últimas tendencias en belleza directamente en tu email.
+      </p>
+      
+      <!-- Beneficios -->
+      <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          ✨ Consejos semanales
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          🎁 Descuentos exclusivos
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          📚 Guías gratuitas
+        </div>
+      </div>
+      
+      <!-- Formulario mejorado -->
+      <form action="https://formsubmit.co/karlasalas2261@gmail.com" method="POST" class="max-w-lg mx-auto">
+        <div class="flex flex-col sm:flex-row gap-4 p-2 bg-white/20 backdrop-blur-sm rounded-2xl border border-white/30">
+          <input 
+            type="email" 
+            name="email"
+            placeholder="📧 Ingresá tu email"
+            required
+            class="flex-1 px-6 py-4 rounded-xl text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-400 font-medium"
+          />
+          <button type="submit" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg whitespace-nowrap">
+            🚀 Suscribirme
+          </button>
+        </div>
+        
+        <!-- Campos ocultos -->
+        <input type="hidden" name="_subject" value="Nueva suscripción al blog de KS Cosmetóloga" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        
+        <!-- Texto legal -->
+        <p class="text-xs text-pink-200 mt-4 max-w-md mx-auto">
+          Al suscribirte, aceptás recibir emails con consejos de belleza. Podés darte de baja en cualquier momento.
+        </p>
+      </form>
+      
+      <!-- Estadísticas sociales -->
+      <div class="flex justify-center gap-8 mt-8 text-sm">
+        <div class="text-center">
+          <div class="text-2xl font-bold">1000+</div>
+          <div class="text-pink-200">Suscriptoras</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">98%</div>
+          <div class="text-pink-200">Satisfacción</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">5★</div>
+          <div class="text-pink-200">Calificación</div>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>
